@@ -1,0 +1,9 @@
+1.2:
+Editor Testing UI fix
+
+1.1:
+Minor fixes included
+Compatibility update
+
+1.0.0:
+Initial version

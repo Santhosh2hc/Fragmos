@@ -1,0 +1,27 @@
+C:\Program Files\Java\jdk1.8.0_20\bin>keytool -exportcert -alias fragmostestkey
+-keystore E:\Android\Project1\Unity\Assets\KeyStore\FragmosTest.keystore -list -
+v
+Enter keystore password:
+Alias name: fragmostestkey
+Creation date: Feb 13, 2016
+Entry type: PrivateKeyEntry
+Certificate chain length: 1
+Certificate[1]:
+Owner: C=INDIA, ST=Karnataka, L=Bangalore, O=DefaultCompany, OU=HCB, CN=Santhosh
+ Kumar
+Issuer: C=INDIA, ST=Karnataka, L=Bangalore, O=DefaultCompany, OU=HCB, CN=Santhos
+h Kumar
+Serial number: 5907e57d
+Valid from: Sat Feb 13 17:17:32 IST 2016 until: Sun Jan 31 17:17:32 IST 2066
+Certificate fingerprints:
+         MD5:  42:38:37:47:E1:10:1B:8B:02:95:BD:BD:D2:E5:11:CE
+         SHA1: BA:76:7D:B4:C3:3E:BB:61:E8:40:EB:C6:2C:2C:84:9C:AF:9C:68:0D
+         SHA256: B5:F4:5C:D6:99:6A:FD:79:5B:BC:C0:31:BA:68:F8:EA:F8:46:71:92:26:
+06:F2:77:A1:B6:BE:71:7F:11:26:7F
+         Signature algorithm name: SHA1withRSA
+         Version: 3
+
+C:\Program Files\Java\jdk1.8.0_20\bin>
+
+password : fragmoshc02
+
