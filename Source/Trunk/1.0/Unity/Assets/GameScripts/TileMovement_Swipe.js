@@ -22,6 +22,7 @@ private var yMagnitude : float; //Y magniitude of swipe
 private var swapPosition : Vector2;
 private var swapPos1 : Vector2;
 private var swapPos2 : Vector2;
+private var tempSwapPos : Vector2 = Vector2(10f, 10f);
 private var swapTileNumber : int;
 
 var tilePos : Transform[] = new Transform[9];
@@ -103,10 +104,7 @@ function Update ()
 	if (isApplyPowerUp == true)
 	{
 	swapPosition = getSwapTile();
-	if (isValidSwapTile == true)
-	{
 	reScale_andSwapTiles();	
-	}
 	}
 	
 }
@@ -506,11 +504,11 @@ function stopTileMovement()
 
 function reScale_andSwapTiles()
 {	
-	var tempTilePos : float;
-	isValidSwapTile = false;
-	if(isNewTouch == true)
+	var tempTilePos : float;	
+	if((isNewTouch == true)&&(isValidSwapTile == true))
 	{
 		isNewTouch = false;
+		isValidSwapTile = false;
 		//---------------------------------------------------------------------------------------------------------------------------------//
 		// Break out of for loop once the tile number of the tile touched by user is identified   																			  
 		//---------------------------------------------------------------------------------------------------------------------------------//
@@ -578,7 +576,7 @@ function reScale_andSwapTiles()
 function getSwapTile()
 {	
 	var swapPos : Vector2;
-	if((Mathf.Abs(startPos.x) < x_RefTile_Div2Mul3)&&(Mathf.Abs(startPos.y) < y_RefTile_Div2Mul3))
+	if((Mathf.Abs(startPos.x) < x_RefTile_Div2Mul3)&&(Mathf.Abs(startPos.y) < y_RefTile_Div2Mul3)&&(isNewTouch == true))
 	{
 	//---------------------------------------------------------------------------------------------------------------------------------//
 	// Get Y Position of the tile to be swapped      																			  
@@ -599,6 +597,7 @@ function getSwapTile()
 	//---------------------------------------------------------------------------------------------------------------------------------//
 	// Get X Position of the tile to be swapped      																			  
 	//---------------------------------------------------------------------------------------------------------------------------------//
+	
 	if(startPos.x >= x_RefTile_Div2 && startPos.x <= x_RefTile_Div2Mul3)
 	{
 	swapPos.x = x_RefTile;
@@ -612,8 +611,20 @@ function getSwapTile()
 	swapPos.x = -x_RefTile;
 	}
 	
+	//---------------------------------------------------------------------------------------------------------------------------------//
+	// Cache the first swipe tile's position in tempSwapPos and if the user touches the same tile again then do not do swapping      																			  
+	//---------------------------------------------------------------------------------------------------------------------------------//
+	
+	if (swapPos == tempSwapPos)
+	{
+	return Vector2(0f, 0f);
+	}
+	else
+	{
 	isValidSwapTile = true;	
+	tempSwapPos = swapPos;
 	return swapPos;
+	}
 	
 	}
 	else
