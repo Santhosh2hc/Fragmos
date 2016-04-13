@@ -1,8 +1,10 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\GameScripts\RTM_2.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\GameScripts\Conditions_Level1.js">
     <Files>
-      <File FileName="Assets\GameScripts\RTM_2.cs" Line="104" Column="2" />
+      <File FileName="Assets\GameScripts\TileMovement_Swipe.js" Line="617" Column="2" />
+      <File FileName="Assets\GameScripts\WallPosition.js" Line="36" Column="2" />
+      <File FileName="Assets\GameScripts\Conditions_Level1.js" Line="3" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

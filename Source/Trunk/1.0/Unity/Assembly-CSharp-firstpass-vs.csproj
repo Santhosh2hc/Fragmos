@@ -131,13 +131,13 @@
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.7.0/Standalone/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="GoogleAdsWP8">
- <HintPath>E:/Android/Project1/Unity/Assets/Plugins/GoogleAdsWP8.dll</HintPath>
+ <HintPath>F:/Git_Fragmos_Main/Fragmos/Source/Trunk/1.0/Unity/Assets/Plugins/GoogleAdsWP8.dll</HintPath>
  </Reference>
  <Reference Include="WP8Native">
- <HintPath>E:/Android/Project1/Unity/Assets/Plugins/WP8Native.dll</HintPath>
+ <HintPath>F:/Git_Fragmos_Main/Fragmos/Source/Trunk/1.0/Unity/Assets/Plugins/WP8Native.dll</HintPath>
  </Reference>
  <Reference Include="WP8PopUps">
- <HintPath>E:/Android/Project1/Unity/Assets/Plugins/WP8PopUps.dll</HintPath>
+ <HintPath>F:/Git_Fragmos_Main/Fragmos/Source/Trunk/1.0/Unity/Assets/Plugins/WP8PopUps.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

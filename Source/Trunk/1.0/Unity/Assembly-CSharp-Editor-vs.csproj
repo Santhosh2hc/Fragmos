@@ -149,7 +149,7 @@
      <None Include="Assets\Plugins\Android\unityads\AndroidManifest.xml" />
      <None Include="Assets\Extensions\AdMediation\Documentation\M_VersionNotes.txt" />
  <Reference Include="Assembly-UnityScript">
- <HintPath>E:/Android/Project1/Unity/Library/ScriptAssemblies/Assembly-UnityScript.dll</HintPath>
+ <HintPath>F:/Git_Fragmos_Main/Fragmos/Source/Trunk/1.0/Unity/Library/ScriptAssemblies/Assembly-UnityScript.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.7.0/Standalone/UnityEngine.UI.dll</HintPath>
@@ -158,13 +158,13 @@
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.7.0/Editor/UnityEditor.UI.dll</HintPath>
  </Reference>
  <Reference Include="GoogleAdsWP8">
- <HintPath>E:/Android/Project1/Unity/Assets/Plugins/GoogleAdsWP8.dll</HintPath>
+ <HintPath>F:/Git_Fragmos_Main/Fragmos/Source/Trunk/1.0/Unity/Assets/Plugins/GoogleAdsWP8.dll</HintPath>
  </Reference>
  <Reference Include="WP8Native">
- <HintPath>E:/Android/Project1/Unity/Assets/Plugins/WP8Native.dll</HintPath>
+ <HintPath>F:/Git_Fragmos_Main/Fragmos/Source/Trunk/1.0/Unity/Assets/Plugins/WP8Native.dll</HintPath>
  </Reference>
  <Reference Include="WP8PopUps">
- <HintPath>E:/Android/Project1/Unity/Assets/Plugins/WP8PopUps.dll</HintPath>
+ <HintPath>F:/Git_Fragmos_Main/Fragmos/Source/Trunk/1.0/Unity/Assets/Plugins/WP8PopUps.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.Graphs">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.Graphs.dll</HintPath>
