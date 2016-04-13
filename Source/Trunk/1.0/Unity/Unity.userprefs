@@ -1,10 +1,10 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\GameScripts\Conditions_Level1.js">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\GameScripts\TileMovement_Swipe.js">
     <Files>
-      <File FileName="Assets\GameScripts\TileMovement_Swipe.js" Line="617" Column="2" />
-      <File FileName="Assets\GameScripts\WallPosition.js" Line="36" Column="2" />
-      <File FileName="Assets\GameScripts\Conditions_Level1.js" Line="3" Column="1" />
+      <File FileName="Assets\GameScripts\TileMovement_Swipe.js" Line="601" Column="2" />
+      <File FileName="Assets\GameScripts\WallPosition.js" Line="1" Column="1" />
+      <File FileName="Assets\GameScripts\Conditions_Level1.js" Line="27" Column="26" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
