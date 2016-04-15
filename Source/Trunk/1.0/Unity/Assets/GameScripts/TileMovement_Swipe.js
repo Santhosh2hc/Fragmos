@@ -19,17 +19,10 @@ private var endPos : Vector2;  //End Position of Swipe
 private var xMagnitude : float; //X magnitude of swipe
 private var yMagnitude : float; //Y magniitude of swipe
 
-private var swapPosition : Vector2;
-private var swapPos1 : Vector2;
-private var swapPos2 : Vector2;
-private var tempSwapPos : Vector2 = Vector2(10f, 10f);
-private var swapTileNumber : int;
-
 var tilePos : Transform[] = new Transform[9];
 var tileVel : Rigidbody2D[] = new Rigidbody2D[9];
 var tileCol : BoxCollider2D[] = new BoxCollider2D[9];
 private var POS : Vector2[] = new Vector2[9];
-public var tile_GameObj : GameObject[] = new GameObject[9];
 
 private var cloneTile : GameObject;
 
@@ -58,22 +51,22 @@ private var y_RefTile : float;
 private var y_RefTile_Div2Mul3 : float;
 
 //Global Variables
-public static var moves : int = 999; //Default value (This value will be used if this variable remains unchanged in a level)
+public static var moves : int = 60; //Default value (This value will be used if this variable remains unchanged in a level)
 public static var timeRemaining : float = 60;
 public static var score : int = 0;
 public static var level : int = 0;
-public static var isFinalPos : boolean = false; //Final (Winning) Position
-public static var isApplyPowerUp : boolean = true;
 
+public static var isFinalPos : boolean = false; //Final (Winning) Position
 private var isNewTouch : boolean = false;
 private var isValidMagnit : boolean = false; //Valid Magnitude (Magnitude above required threshold)
 
 private var TOUCHSENS : float = 0.20; //Touch Sensitivity
 
+private var startTime : float = 0; //Time at the start of the swipe
+private var swipeTime : float = 0; //Time taken to complete the swipe
+
 private var isGameStart : boolean = false;
 private var isGameOver : boolean = false;
-private var isGetSwapPos2 : boolean = false;
-private var isValidSwapTile : boolean = false;
 
 public static var isCollision : boolean = false;
 
@@ -81,6 +74,13 @@ private var tileNumber : int = 0;
 private var movingTiles : int[] = new int[3];
 private var movingTilePosx : float[] = new float[3];
 private var movingTilePosy : float[] = new float[3];
+
+private var GameMode : String;
+
+function Start()
+{
+GameMode = PlayerPrefs.GetString("GameMode");
+}
 
 function Update ()  
 {
@@ -100,11 +100,6 @@ function Update ()
 	if (isMovementInProgress == true)
 	{
 		stopTileMovement();	// Stops tiles(at approprioate position) if isMovementInProgress == true 					
-	}
-	if (isApplyPowerUp == true)
-	{
-	swapPosition = getSwapTile();
-	reScale_andSwapTiles();	
 	}
 	
 }
@@ -128,7 +123,8 @@ function getSwipeCoordinates()
 		startPos.x = mainCam.ScreenToWorldPoint (Vector3 (startPos.x, 0, 0)).x;
 		startPos.y = mainCam.ScreenToWorldPoint (Vector3 (0, startPos.y, 0)).y;
 		isNewTouch = true;
-		isValidMagnit = false; // Make isValidMagnit true only after getting endpos		
+		isValidMagnit = false; // Make isValidMagnit true only after getting endpos
+		startTime = Time.time;
 		break;
 		
 		case TouchPhase.Moved:
@@ -141,6 +137,7 @@ function getSwipeCoordinates()
 		if(((xMagnitude > TOUCHSENS) || (yMagnitude > TOUCHSENS)) &&  (isValidMagnit == false))
 		{
 		isValidMagnit = true;
+		swipeTime = Time.time - startTime;
 		}
 		break;
 							
@@ -153,6 +150,7 @@ function getSwipeCoordinates()
 		if(((xMagnitude > TOUCHSENS) || (yMagnitude > TOUCHSENS)) &&  (isValidMagnit == false))
 		{
 		isValidMagnit = true;
+		swipeTime = Time.time - startTime;
 		}
 		break;
 		default :
@@ -168,7 +166,7 @@ function setSpeed()
 
 function moveTiles()
 {
-	if ((Mathf.Abs(startPos.x) < x_RefTile_Div2Mul3)&&(Mathf.Abs(startPos.y) < y_RefTile_Div2Mul3)&&(moves > 0)&&(isFinalPos == false)&&(isNewTouch == true)&&(isValidMagnit == true)&&(timeRemaining > 0)&&(isApplyPowerUp == false))
+	if ((Mathf.Abs(startPos.x) < x_RefTile_Div2Mul3)&&(Mathf.Abs(startPos.y) < y_RefTile_Div2Mul3)&&(moves > 0)&&(isFinalPos == false)&&(isNewTouch == true)&&(isValidMagnit == true)&&(timeRemaining > 0))
 	{
 		//------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 		// Do not move
@@ -179,7 +177,10 @@ function moveTiles()
 		//If the magnitude is less than the threshold	(VMAG will be false in that case)		
 		//If Time Remaining is less than 0
 		//------------------------------------------------------------------------------------------------------------------------------------------------------------------//
-		moves--; //For every valid move decrement the move count		
+		if(GameMode == "Moves")
+		{
+		moves--; //For every valid move decrement the move count
+		}		
 		audio.Play();
 		isNewTouch = false; 
 		
@@ -491,7 +492,6 @@ function stopTileMovement()
 		//---------------------------------------------------------------------------------------------------------------------------------//
 		// Re - arrange the tiles in appropriate position      																			   //
 		//---------------------------------------------------------------------------------------------------------------------------------//
-		
 		var p : int = 0;
 		for(var n : int = 0; n < 3; n++)
 		{
@@ -502,133 +502,4 @@ function stopTileMovement()
 	}	
 }
 
-function reScale_andSwapTiles()
-{	
-	var tempTilePos : float;	
-	if((isNewTouch == true)&&(isValidSwapTile == true))
-	{
-		isNewTouch = false;
-		isValidSwapTile = false;
-		//---------------------------------------------------------------------------------------------------------------------------------//
-		// Break out of for loop once the tile number of the tile touched by user is identified   																			  
-		//---------------------------------------------------------------------------------------------------------------------------------//
-		
-		var q : int;
-		for(q = 0; q < 9; q++)
-		{
-			if((tilePos[q].transform.position.x - swapPosition.x <= TOLERANCE) && (tilePos[q].transform.position.x - swapPosition.x >= -TOLERANCE))
-			{
-				if((tilePos[q].transform.position.y - swapPosition.y <= TOLERANCE) && (tilePos[q].transform.position.y - swapPosition.y >= -TOLERANCE))
-				{
-				break;
-				}
-			}		
-		}	
-		
-		//---------------------------------------------------------------------------------------------------------------------------------//
-		// Re size the tile touched by the user(make it smaller) and change their z values so that they dont collide with each other																	  
-		//---------------------------------------------------------------------------------------------------------------------------------//
-		
-		tile_GameObj[q].gameObject.transform.localScale -= new Vector3(0.2f,0.2f,0);
-		tilePos[q].transform.position.z = tempTilePos;
-		
-		//---------------------------------------------------------------------------------------------------------------------------------//
-		// If the user touches any of the tiles and if the touch is new then get the get swap position 1 and swap position 2     																			  
-		//---------------------------------------------------------------------------------------------------------------------------------//
-		
-		if(isGetSwapPos2 == false)
-		{
-			swapPos1 = swapPosition;			
-			isGetSwapPos2 = true;
-			tempTilePos = 1;	
-			swapTileNumber = q;	
-		}
-		else
-		{
-			swapPos2 = swapPosition;			
-			isGetSwapPos2 = false;			
-			tempTilePos = 2;
-			isApplyPowerUp = false;
-			
-			//----------------------------------------------------------------------------------------------------------------------------------//
-			// Swap the tile positions and resize them 																			  
-			//----------------------------------------------------------------------------------------------------------------------------------//
-			
-			yield WaitForSeconds (0.5);
-			tilePos[q].transform.position.x = swapPos1.x;
-			tilePos[q].transform.position.y = swapPos1.y;				
-			tilePos[swapTileNumber].transform.position.x = swapPos2.x;
-			tilePos[swapTileNumber].transform.position.y = swapPos2.y;
-			yield WaitForSeconds (0.5);
-			tile_GameObj[q].gameObject.transform.localScale += new Vector3(0.2f,0.2f,0);
-			tile_GameObj[swapTileNumber].gameObject.transform.localScale += new Vector3(0.2f,0.2f,0);
-			
-			//---------------------------------------------------------------------------------------------------------------------------------//
-			// Change the Z values of both the tiles as 0																			  
-			//---------------------------------------------------------------------------------------------------------------------------------//
-					
-			tilePos[q].transform.position.z = 0;
-			tilePos[swapTileNumber].transform.position.z = 0;		
-		}		
-	}	
-}
 
-function getSwapTile()
-{	
-	var swapPos : Vector2;
-	if((Mathf.Abs(startPos.x) < x_RefTile_Div2Mul3)&&(Mathf.Abs(startPos.y) < y_RefTile_Div2Mul3)&&(isNewTouch == true))
-	{
-	//---------------------------------------------------------------------------------------------------------------------------------//
-	// Get Y Position of the tile to be swapped      																			  
-	//---------------------------------------------------------------------------------------------------------------------------------//
-	if(startPos.y >= y_RefTile_Div2 && startPos.y <= y_RefTile_Div2Mul3)
-	{
-	swapPos.y = y_RefTile;		
-	}
-	if(startPos.y >= -y_RefTile_Div2 && startPos.y <= y_RefTile_Div2)
-	{
-	swapPos.y = 0;
-	}
-	if(startPos.y >= -y_RefTile_Div2Mul3 && startPos.y <= -y_RefTile_Div2)
-	{
-	swapPos.y = -y_RefTile;
-	}
-	
-	//---------------------------------------------------------------------------------------------------------------------------------//
-	// Get X Position of the tile to be swapped      																			  
-	//---------------------------------------------------------------------------------------------------------------------------------//
-	
-	if(startPos.x >= x_RefTile_Div2 && startPos.x <= x_RefTile_Div2Mul3)
-	{
-	swapPos.x = x_RefTile;
-	}
-	if(startPos.x >= -x_RefTile_Div2 && startPos.x <= x_RefTile_Div2)
-	{
-	swapPos.x = 0;
-	}
-	if(startPos.x >= -x_RefTile_Div2Mul3 && startPos.x <= -x_RefTile_Div2)
-	{
-	swapPos.x = -x_RefTile;
-	}
-	
-	//---------------------------------------------------------------------------------------------------------------------------------//
-	// Cache the first swipe tile's position in tempSwapPos and if the user touches the same tile again then do not do swapping      																			  
-	//---------------------------------------------------------------------------------------------------------------------------------//
-	
-	if (swapPos == tempSwapPos)
-	{
-	return Vector2(0f, 0f);
-	}
-	else
-	{
-	isValidSwapTile = true;	
-	tempSwapPos = swapPos;
-	return swapPos;
-	}
-	
-	}
-	else
-	{
-	return Vector2(0f, 0f);
-	}
-}
