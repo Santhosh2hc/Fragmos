@@ -79,7 +79,7 @@ GUI.Label(new Rect(Screen.width - xUnit, yUnit, xUnit * 2, yUnit), "" + (Mathf.R
 GUI.skin = timepowerSkin;
 GUI.Label(new Rect(0.2 * xyUnit, Screen.height - 0.7 * xyUnit, 0.5 * xyUnit, 0.5 * xyUnit), "");
 GUI.skin = timepowerSkin1;
-timepowerSkin.label.fontSize = xUnit/4;
+timepowerSkin1.label.fontSize = xUnit/4;
 GUI.Label(new Rect(0.7 * xyUnit, Screen.height - 0.7 * xyUnit, 0.5 * xyUnit, 0.5 * xyUnit), ""+timePower);
 GUI.skin = timepowerSkin2;
 if ((GUI.Button(new Rect(0, Screen.height - 0.9 * xyUnit, 1.3 * xyUnit, 0.9 * xyUnit), "")) && (timePower > 0))
@@ -100,7 +100,7 @@ GUI.Label(new Rect(Screen.width - xUnit, yUnit, xUnit * 2, yUnit), "" + TileMove
 GUI.skin = movepowerSkin;
 GUI.Label(new Rect(0.2 * xyUnit, Screen.height - 0.7 * xyUnit, 0.5 * xyUnit, 0.5 * xyUnit), "");
 GUI.skin = movepowerSkin1;
-movepowerSkin.label.fontSize = xUnit/4;
+movepowerSkin1.label.fontSize = xUnit/4;
 GUI.Label(new Rect(0.7 * xyUnit, Screen.height - 0.7 * xyUnit, 0.5 * xyUnit, 0.5 * xyUnit), ""+movePower);
 GUI.skin = movepowerSkin2;
 if ((GUI.Button(new Rect(0, Screen.height - 0.9 * xyUnit, 1.3 * xyUnit, 0.9 * xyUnit), "")) && (movePower > 0))
@@ -124,7 +124,7 @@ GUI.Label(new Rect(Screen.width/2 - xUnit/2, Screen.height - yUnit/2, xUnit * 2,
 GUI.skin = swappowerSkin;
 GUI.Label(new Rect(Screen.width - 1.1 * xyUnit, Screen.height - 0.7 * xyUnit, 0.5 * xyUnit, 0.5 * xyUnit), "");
 GUI.skin = swappowerSkin1;
-timepowerSkin.label.fontSize = xUnit/4;
+swappowerSkin1.label.fontSize = xUnit/4;
 GUI.Label(new Rect((Screen.width - 1.2 * xyUnit) + (0.6 * xyUnit), Screen.height - 0.7 * xyUnit, 0.5 * xyUnit, 0.5 * xyUnit), ""+TileMovement_Swipe.swapPower);
 GUI.skin = swappowerSkin2;
 if ((GUI.Button(new Rect(Screen.width - 1.3 * xyUnit, Screen.height - 0.9 * xyUnit, 1.3 * xyUnit, 0.9 * xyUnit), "")) && (TileMovement_Swipe.swapPower > 0))
