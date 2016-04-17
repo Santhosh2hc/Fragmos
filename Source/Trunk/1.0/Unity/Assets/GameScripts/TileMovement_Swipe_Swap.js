@@ -63,7 +63,7 @@ public static var timeRemaining : float = 60;
 public static var score : int = 0;
 public static var level : int = 0;
 public static var isFinalPos : boolean = false; //Final (Winning) Position
-public static var isApplyPowerUp : boolean = true;
+public static var isApplyPowerUp : boolean = false;
 
 private var isNewTouch : boolean = false;
 private var isValidMagnit : boolean = false; //Valid Magnitude (Magnitude above required threshold)

@@ -13,8 +13,24 @@ private var xUnit : int;
 private var yUnit : int;
 private var xyUnit : int;
 
+var NewInstallation : String;
+
 function Start () 
 {
+
+NewInstallation = PlayerPrefs.GetString("NewInstallation");
+
+if (NewInstallation == "NewInst")
+{
+
+}
+else
+{
+PlayerPrefs.SetString("NewInstallation", "NewInst");
+PlayerPrefs.SetInt("movePower", 10);
+PlayerPrefs.SetInt("timePower", 10);
+PlayerPrefs.SetInt("swapPower", 10);
+}
 TileMovement_Swipe.timeRemaining = 60;
 TileMovement_Swipe.moves = 60;
 TileMovement_Swipe.score = 0;

@@ -49,6 +49,7 @@
      <Compile Include="Assets\Extensions\AndroidNative\xExample\Scripts\JS\JSUseExample.js" />
      <Compile Include="Assets\Extensions\IOSNative\xExample\Scripts\JSExample\JSCall.js" />
      <Compile Include="Assets\GameScripts\Conditions_Level1.js" />
+     <Compile Include="Assets\GameScripts\Conditions_Level1_v1.js" />
      <Compile Include="Assets\GameScripts\Conditions_Level2.js" />
      <Compile Include="Assets\GameScripts\Conditions_Level3.js" />
      <Compile Include="Assets\GameScripts\Conditions_Level4.js" />
@@ -58,6 +59,8 @@
      <Compile Include="Assets\GameScripts\Open_Level1_JS.js" />
      <Compile Include="Assets\GameScripts\TileMovement_Swipe.js" />
      <Compile Include="Assets\GameScripts\TileMovement_Swipe_Swap.js" />
+     <Compile Include="Assets\GameScripts\TileMovement_Swipe_v1.js" />
+     <Compile Include="Assets\GameScripts\TileMovement_Swipe_v2.js" />
      <Compile Include="Assets\GameScripts\WallPosition.js" />
      <Compile Include="Assets\MenuUI.js" />
      <None Include="Assets\Plugins\Android\unityads\res\layout\unityads_view_video_play.xml" />
