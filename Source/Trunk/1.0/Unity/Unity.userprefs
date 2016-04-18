@@ -1,10 +1,11 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\GameScripts\TileMovement_Swipe.js">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\ScoreUI.js">
     <Files>
-      <File FileName="Assets\MenuUI.js" Line="23" Column="34" />
-      <File FileName="Assets\GameScripts\TileMovement_Swipe.js" Line="56" Column="39" />
-      <File FileName="Assets\GameScripts\Conditions_Level1.js" Line="130" Column="151" />
+      <File FileName="Assets\GameScripts\Conditions_Level1.js" Line="267" Column="4" />
+      <File FileName="Assets\ScoreUI.js" Line="40" Column="79" />
+      <File FileName="Assets\GameScripts\TileMovement_Swipe.js" Line="57" Column="45" />
+      <File FileName="Assets\MenuUI.js" Line="57" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
