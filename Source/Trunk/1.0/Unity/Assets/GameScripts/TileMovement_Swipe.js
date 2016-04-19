@@ -54,7 +54,7 @@ public static var level : int = 0;
 public static var isFinalPos : boolean = false; //Final (Winning) Position
 public static var isApplyPowerUp : boolean = false;
 public static var swapPower : int = 0;
-
+public static var isPause : boolean = false;
 private var isNewTouch : boolean = false;
 private var isValidMagnit : boolean = false; //Valid Magnitude (Magnitude above required threshold)
 
@@ -163,7 +163,7 @@ function setSpeed()
 
 function moveTiles()
 {
-	if ((Mathf.Abs(startPos.x) < x_RefTile_Div2Mul3)&&(Mathf.Abs(startPos.y) < y_RefTile_Div2Mul3)&&(moves > 0)&&(isFinalPos == false)&&(isNewTouch == true)&&(isValidMagnit == true)&&(timeRemaining > 0)&&(isApplyPowerUp == false))
+	if ((Mathf.Abs(startPos.x) < x_RefTile_Div2Mul3)&&(Mathf.Abs(startPos.y) < y_RefTile_Div2Mul3)&&(moves > 0)&&(isFinalPos == false)&&(isNewTouch == true)&&(isValidMagnit == true)&&(timeRemaining > 0)&&(isApplyPowerUp == false)&&(isPause == false))
 	{
 		//------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 		// Do not move
