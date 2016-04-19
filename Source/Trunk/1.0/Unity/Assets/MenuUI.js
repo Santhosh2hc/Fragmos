@@ -34,7 +34,7 @@ PlayerPrefs.SetInt("swapPower", 10);
 TileMovement_Swipe.timeRemaining = 60;
 TileMovement_Swipe.moves = 60;
 TileMovement_Swipe.score = 0;
-TileMovement_Swipe.level = 0;
+TileMovement_Swipe.level = 1;
 }
 
 function Update () {

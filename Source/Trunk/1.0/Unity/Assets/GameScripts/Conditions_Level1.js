@@ -16,6 +16,8 @@ private var LOC_TOLERANCE : float = TileMovement_Swipe.TOLERANCE;
 
 var tilePos : Transform[] = new Transform[9];
 
+var foreGround2 : Transform;
+
 
 var moveSkin : GUISkin;
 var resetSkin : GUISkin;
@@ -31,6 +33,10 @@ var swappowerSkin1 : GUISkin;
 var timepowerSkin2 : GUISkin;
 var movepowerSkin2 : GUISkin;
 var swappowerSkin2 : GUISkin;
+var pauseSkin : GUISkin;
+var redButtonSkin : GUISkin;
+var turqButtonSkin : GUISkin;
+var purpleButtonSkin : GUISkin;
 
 private var xUnit : int;
 private var yUnit : int;
@@ -51,7 +57,6 @@ function Start()
 timePower = PlayerPrefs.GetInt("timePower");
 movePower = PlayerPrefs.GetInt("movePower");
 TileMovement_Swipe.isFinalPos = false;
-TileMovement_Swipe.level = TileMovement_Swipe.level + 1;
 GameMode = PlayerPrefs.GetString("GameMode");
 isRePosition = true;
 }
@@ -68,8 +73,8 @@ moveSkin.label.fontSize = xUnit/4;
 
 GUI.Label(new Rect(Screen.width/2 - xUnit*1.25, yUnit * 2, xUnit * 3, yUnit), "Match the Pattern");
 
-GUI.Label(new Rect(xUnit/4, yUnit/4, xUnit * 2, yUnit), "score  ");
-GUI.Label(new Rect(xUnit/4, yUnit, xUnit * 2, yUnit), "" + TileMovement_Swipe.score);
+GUI.Label(new Rect(xUnit/4, yUnit/4, xUnit * 2, yUnit), "Level");
+GUI.Label(new Rect(xUnit/4, yUnit, xUnit * 2, yUnit), "" + TileMovement_Swipe.level);
 
 if (GameMode == "Timed")
 {
@@ -79,7 +84,7 @@ GUI.Label(new Rect(Screen.width - xUnit, yUnit, xUnit * 2, yUnit), "" + (Mathf.R
 GUI.skin = timepowerSkin;
 GUI.Label(new Rect(0.2 * xyUnit, Screen.height - 0.7 * xyUnit, 0.5 * xyUnit, 0.5 * xyUnit), "");
 GUI.skin = timepowerSkin1;
-timepowerSkin1.label.fontSize = xUnit/4;
+timepowerSkin.label.fontSize = xUnit/4;
 GUI.Label(new Rect(0.7 * xyUnit, Screen.height - 0.7 * xyUnit, 0.5 * xyUnit, 0.5 * xyUnit), ""+timePower);
 GUI.skin = timepowerSkin2;
 if ((GUI.Button(new Rect(0, Screen.height - 0.9 * xyUnit, 1.3 * xyUnit, 0.9 * xyUnit), "")) && (timePower > 0))
@@ -100,7 +105,7 @@ GUI.Label(new Rect(Screen.width - xUnit, yUnit, xUnit * 2, yUnit), "" + TileMove
 GUI.skin = movepowerSkin;
 GUI.Label(new Rect(0.2 * xyUnit, Screen.height - 0.7 * xyUnit, 0.5 * xyUnit, 0.5 * xyUnit), "");
 GUI.skin = movepowerSkin1;
-movepowerSkin1.label.fontSize = xUnit/4;
+movepowerSkin.label.fontSize = xUnit/4;
 GUI.Label(new Rect(0.7 * xyUnit, Screen.height - 0.7 * xyUnit, 0.5 * xyUnit, 0.5 * xyUnit), ""+movePower);
 GUI.skin = movepowerSkin2;
 if ((GUI.Button(new Rect(0, Screen.height - 0.9 * xyUnit, 1.3 * xyUnit, 0.9 * xyUnit), "")) && (movePower > 0))
@@ -119,17 +124,62 @@ if (GameMode == "Endless")
 GUI.skin = clueSkin;
 GUI.Button(new Rect(Screen.width/2 - xUnit/2, yUnit/4, xyUnit, xyUnit), "");
 
-GUI.skin = moveSkin;
-GUI.Label(new Rect(Screen.width/2 - xUnit/2, Screen.height - yUnit/2, xUnit * 2, yUnit), "level  " + TileMovement_Swipe.level);
 GUI.skin = swappowerSkin;
 GUI.Label(new Rect(Screen.width - 1.1 * xyUnit, Screen.height - 0.7 * xyUnit, 0.5 * xyUnit, 0.5 * xyUnit), "");
 GUI.skin = swappowerSkin1;
-swappowerSkin1.label.fontSize = xUnit/4;
+timepowerSkin.label.fontSize = xUnit/4;
 GUI.Label(new Rect((Screen.width - 1.2 * xyUnit) + (0.6 * xyUnit), Screen.height - 0.7 * xyUnit, 0.5 * xyUnit, 0.5 * xyUnit), ""+TileMovement_Swipe.swapPower);
 GUI.skin = swappowerSkin2;
 if ((GUI.Button(new Rect(Screen.width - 1.3 * xyUnit, Screen.height - 0.9 * xyUnit, 1.3 * xyUnit, 0.9 * xyUnit), "")) && (TileMovement_Swipe.swapPower > 0))
 {
 TileMovement_Swipe.isApplyPowerUp = true;
+}
+GUI.skin = pauseSkin;
+if (GUI.Button(new Rect(Screen.width/2 - 0.25 * xyUnit, Screen.height - 0.7 * xyUnit, 0.5 * xyUnit, 0.5 * xyUnit), ""))
+{
+if(TileMovement_Swipe.isPause == false)
+{
+TileMovement_Swipe.isPause = true;
+}
+else
+{
+TileMovement_Swipe.isPause = false;
+}
+}
+
+if(TileMovement_Swipe.isPause == true)
+{
+foreGround2.transform.position.z = -1;
+GUI.skin = redButtonSkin;
+redButtonSkin.label.fontSize = xUnit/4;
+if (GUI.Button(new Rect(Screen.width - 3.5 * xUnit, Screen.height/2 - 0.75 * xyUnit, 2 * xUnit, 0.6 * xyUnit), ""))
+{
+TileMovement_Swipe.isPause = false;
+}
+GUI.Label(new Rect(Screen.width - 3.5 * xUnit, Screen.height/2 - 0.75 * xyUnit, 2 * xUnit, 0.6 * xyUnit), "Unpause");
+GUI.skin = turqButtonSkin;
+turqButtonSkin.label.fontSize = xUnit/4;
+if (GUI.Button(new Rect(Screen.width - 3.5 * xUnit, Screen.height/2, 2 * xUnit, 0.6 * xyUnit), ""))
+{
+isRePosition = true;
+TileMovement_Swipe.timeRemaining = 60;
+TileMovement_Swipe.moves = 60;
+TileMovement_Swipe.score = 0;
+TileMovement_Swipe.level = 1;
+TileMovement_Swipe.isPause = false;
+}
+GUI.Label(new Rect(Screen.width - 3.5 * xUnit, Screen.height/2, 2 * xUnit, 0.6 * xyUnit), "Restart");
+GUI.skin = purpleButtonSkin;
+purpleButtonSkin.label.fontSize = xUnit/4;
+if (GUI.Button(new Rect(Screen.width - 3.5 * xUnit, Screen.height/2 + 0.75 * xyUnit, 2 * xUnit, 0.6 * xyUnit), ""))
+{
+Application.LoadLevel("MainMenu");
+}
+GUI.Label(new Rect(Screen.width - 3.5 * xUnit, Screen.height/2 + 0.75 * xyUnit, 2 * xUnit, 0.6* xyUnit), "Exit to Menu");
+}
+else
+{
+foreGround2.transform.position.z = 1;
 }
 
 }
@@ -150,7 +200,7 @@ if (isRePosition == true)
 }
 if (GameMode == "Timed")
 {
-	if ((isWin == false)&&(TileMovement_Swipe.timeRemaining > 0))
+	if ((isWin == false)&&(TileMovement_Swipe.timeRemaining > 0)&&(TileMovement_Swipe.isPause == false))
 	{
 	TileMovement_Swipe.timeRemaining = TileMovement_Swipe.timeRemaining - Time.deltaTime;	
 	}
@@ -166,8 +216,7 @@ if (TileMovement_Swipe.timeRemaining <= 0)
 }
 if (isDisplayResult == true)
 {
-isRePosition = true;
-//Application.LoadLevel("Score");
+Application.LoadLevel("Score");
 }
 }
 
@@ -211,11 +260,11 @@ function checkWinCondition()
 	{
 	matchCount = 0;
 	isWin = true;	
-	TileMovement_Swipe.isFinalPos = isWin;
+	TileMovement_Swipe.isFinalPos = isWin;	
 	TileMovement_Swipe.score = TileMovement_Swipe.score + 1;	
+	TileMovement_Swipe.level = TileMovement_Swipe.level + 1;
 	Handheld.Vibrate();
-	yield WaitForSeconds(0.5);
-	Application.LoadLevel("Level2");	
+	//yield WaitForSeconds(1);		
 	}
 	else
 	{
@@ -243,7 +292,6 @@ for (i = 0; i < n; i++)
 // Random.Range(0, 10) returns a random number between 0 and 10.
 var r : int = 0; 
 r = Random.Range(0, 10);
-Debug.Log("rvalue"+r);
 tempList = List[r];
 List[r] = List[i];
 List[i] = tempList;
@@ -255,7 +303,6 @@ for (j = 0; j < n; j++)
 var k : int;
 k = List[j];
 tilePos[k].transform.position = POS[j];
-Debug.Log("kvalue"+k);
 }
 
 isRePosition = false;
