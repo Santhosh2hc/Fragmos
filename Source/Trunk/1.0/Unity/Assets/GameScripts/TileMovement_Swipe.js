@@ -55,6 +55,8 @@ public static var isFinalPos : boolean = false; //Final (Winning) Position
 public static var isApplyPowerUp : boolean = false;
 public static var swapPower : int = 0;
 public static var isPause : boolean = false;
+public static var oppScore : int = 0;
+
 private var isNewTouch : boolean = false;
 private var isValidMagnit : boolean = false; //Valid Magnitude (Magnitude above required threshold)
 
@@ -72,9 +74,12 @@ private var movingTiles : int[] = new int[3];
 private var movingTilePosx : float[] = new float[3];
 private var movingTilePosy : float[] = new float[3];
 
+private var GameMode : String;
+
 function Start()
 {
 swapPower = PlayerPrefs.GetInt("swapPower");
+GameMode = PlayerPrefs.GetString("GameMode");
 }
 
 function Update ()  
@@ -174,7 +179,10 @@ function moveTiles()
 		//If the magnitude is less than the threshold	(VMAG will be false in that case)		
 		//If Time Remaining is less than 0
 		//------------------------------------------------------------------------------------------------------------------------------------------------------------------//
-		moves--; //For every valid move decrement the move count		
+		if (GameMode == "Moves")
+		{
+		moves--; //For every valid move decrement the move count	
+		}	
 		audio.Play();
 		isNewTouch = false; 
 		
