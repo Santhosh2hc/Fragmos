@@ -18,8 +18,8 @@ var tilePos : Transform[] = new Transform[9];
 
 var foreGround2 : Transform;
 
-
-var moveSkin : GUISkin;
+var infoSkin : GUISkin;
+var infoSkin2 : GUISkin;
 var resetSkin : GUISkin;
 var settingSkin : GUISkin;
 var clueSkin : GUISkin;
@@ -42,15 +42,18 @@ private var xUnit : int;
 private var yUnit : int;
 private var xyUnit : int;
 private var GameMode : String;
+private var GameMode2 : String;
 
 private var isDisplayResult : boolean = false;
 
 private var isWin : boolean; //True if matchCount reaches WIN_NUMBER
 
+//Global Variables
 public static var isRePosition : boolean = false;
 
 private var movePower : int = 0;
 private var timePower : int = 0;
+private var NewInstallationCL : String;
 
 function Start()
 {
@@ -58,6 +61,8 @@ timePower = PlayerPrefs.GetInt("timePower");
 movePower = PlayerPrefs.GetInt("movePower");
 TileMovement_Swipe.isFinalPos = false;
 GameMode = PlayerPrefs.GetString("GameMode");
+GameMode2 = PlayerPrefs.GetString("GameMode2");
+
 isRePosition = true;
 }
 
@@ -68,11 +73,36 @@ xUnit = Screen.width/5;
 yUnit = Screen.height/10;
 xyUnit = (xUnit + yUnit)/2;
 
-GUI.skin = moveSkin;
-moveSkin.label.fontSize = xUnit/4;
+NewInstallationCL = PlayerPrefs.GetString("NewInstallation");
 
-GUI.Label(new Rect(Screen.width/2 - xUnit*1.25, yUnit * 2, xUnit * 3, yUnit), "Match the Pattern");
+if (NewInstallationCL == "NewInstCL")
+{
 
+}
+else
+{
+GUI.skin = infoSkin;
+infoSkin.label.fontSize = xUnit/4;
+if (TileMovement_Swipe.level == 1)
+{
+GUI.Label(new Rect(Screen.width/2 - xUnit * 4/2, yUnit * 2, xUnit * 4, yUnit), "Match the Pattern");
+}
+if (TileMovement_Swipe.level == 2)
+{
+GUI.Label(new Rect(Screen.width/2 - xUnit * 4/2, yUnit * 2, xUnit * 4, yUnit), "You Got It!");
+}
+if (TileMovement_Swipe.level == 5)
+{
+PlayerPrefs.SetString("NewInstallation", "NewInstCL");
+}
+}
+
+if (GameMode2 == "Online")
+{
+GUI.Label(new Rect(Screen.width/2 - xUnit * 4/2, Screen.height - yUnit * 2, xUnit * 4, yUnit), "You   " + TileMovement_Swipe.score + "        Opponent   " + TileMovement_Swipe.oppScore);
+}
+
+GUI.skin = infoSkin2;
 GUI.Label(new Rect(xUnit/4, yUnit/4, xUnit * 2, yUnit), "Level");
 GUI.Label(new Rect(xUnit/4, yUnit, xUnit * 2, yUnit), "" + TileMovement_Swipe.level);
 
@@ -84,7 +114,7 @@ GUI.Label(new Rect(Screen.width - xUnit, yUnit, xUnit * 2, yUnit), "" + (Mathf.R
 GUI.skin = timepowerSkin;
 GUI.Label(new Rect(0.2 * xyUnit, Screen.height - 0.7 * xyUnit, 0.5 * xyUnit, 0.5 * xyUnit), "");
 GUI.skin = timepowerSkin1;
-timepowerSkin.label.fontSize = xUnit/4;
+timepowerSkin1.label.fontSize = xUnit/4;
 GUI.Label(new Rect(0.7 * xyUnit, Screen.height - 0.7 * xyUnit, 0.5 * xyUnit, 0.5 * xyUnit), ""+timePower);
 GUI.skin = timepowerSkin2;
 if ((GUI.Button(new Rect(0, Screen.height - 0.9 * xyUnit, 1.3 * xyUnit, 0.9 * xyUnit), "")) && (timePower > 0))
@@ -105,7 +135,7 @@ GUI.Label(new Rect(Screen.width - xUnit, yUnit, xUnit * 2, yUnit), "" + TileMove
 GUI.skin = movepowerSkin;
 GUI.Label(new Rect(0.2 * xyUnit, Screen.height - 0.7 * xyUnit, 0.5 * xyUnit, 0.5 * xyUnit), "");
 GUI.skin = movepowerSkin1;
-movepowerSkin.label.fontSize = xUnit/4;
+movepowerSkin1.label.fontSize = xUnit/4;
 GUI.Label(new Rect(0.7 * xyUnit, Screen.height - 0.7 * xyUnit, 0.5 * xyUnit, 0.5 * xyUnit), ""+movePower);
 GUI.skin = movepowerSkin2;
 if ((GUI.Button(new Rect(0, Screen.height - 0.9 * xyUnit, 1.3 * xyUnit, 0.9 * xyUnit), "")) && (movePower > 0))
@@ -127,7 +157,7 @@ GUI.Button(new Rect(Screen.width/2 - xUnit/2, yUnit/4, xyUnit, xyUnit), "");
 GUI.skin = swappowerSkin;
 GUI.Label(new Rect(Screen.width - 1.1 * xyUnit, Screen.height - 0.7 * xyUnit, 0.5 * xyUnit, 0.5 * xyUnit), "");
 GUI.skin = swappowerSkin1;
-timepowerSkin.label.fontSize = xUnit/4;
+swappowerSkin1.label.fontSize = xUnit/4;
 GUI.Label(new Rect((Screen.width - 1.2 * xyUnit) + (0.6 * xyUnit), Screen.height - 0.7 * xyUnit, 0.5 * xyUnit, 0.5 * xyUnit), ""+TileMovement_Swipe.swapPower);
 GUI.skin = swappowerSkin2;
 if ((GUI.Button(new Rect(Screen.width - 1.3 * xyUnit, Screen.height - 0.9 * xyUnit, 1.3 * xyUnit, 0.9 * xyUnit), "")) && (TileMovement_Swipe.swapPower > 0))
@@ -186,6 +216,7 @@ foreGround2.transform.position.z = 1;
 
 function Update ()  
 {
+TileMovement_Swipe.oppScore = PlayerPrefs.GetInt("opp_Score");
 if(isWin == false)
 {
 checkWinCondition();
@@ -216,7 +247,14 @@ if (TileMovement_Swipe.timeRemaining <= 0)
 }
 if (isDisplayResult == true)
 {
+if (GameMode2 == "Online")
+{
+Application.LoadLevel("Online2");
+}
+else
+{
 Application.LoadLevel("Score");
+}
 }
 }
 
@@ -262,9 +300,9 @@ function checkWinCondition()
 	isWin = true;	
 	TileMovement_Swipe.isFinalPos = isWin;	
 	TileMovement_Swipe.score = TileMovement_Swipe.score + 1;	
+	PlayerPrefs.SetInt("player_Score", TileMovement_Swipe.score);
 	TileMovement_Swipe.level = TileMovement_Swipe.level + 1;
 	Handheld.Vibrate();
-	//yield WaitForSeconds(1);		
 	}
 	else
 	{
@@ -310,3 +348,4 @@ isWin = false;
 TileMovement_Swipe.isFinalPos = false;
 isDisplayResult = false;
 }
+
