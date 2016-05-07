@@ -39,6 +39,7 @@ TileMovement_Swipe.moves = 60;
 TileMovement_Swipe.score = 0;
 TileMovement_Swipe.level = 1;
 TileMovement_Swipe.isPause = false;
+TileMovement_Swipe.actLevel = 0;
 }
 
 function Update () {
@@ -107,7 +108,4 @@ GUI.Label(new Rect(Screen.width/2 - xUnit * 3/2, yUnit/3.8, xUnit * 3, xUnit/2),
 GUI.skin = iconSkin;
 GUI.Label(new Rect(xUnit/2, yUnit/6, xyUnit * 0.7, xyUnit * 0.7), "");
 
-GUI.skin = demoSkin;
-demoSkin.label.fontSize = xUnit/4;
-GUI.Label(new Rect(Screen.width/2 - xUnit/2, yUnit * 2, xUnit * 3, yUnit), "Demo Build");
 }

@@ -49,11 +49,6 @@
      <Compile Include="Assets\Extensions\AndroidNative\xExample\Scripts\JS\JSUseExample.js" />
      <Compile Include="Assets\Extensions\IOSNative\xExample\Scripts\JSExample\JSCall.js" />
      <Compile Include="Assets\GameScripts\Conditions_Level1.js" />
-     <Compile Include="Assets\GameScripts\Conditions_Level1_v1.js" />
-     <Compile Include="Assets\GameScripts\Conditions_Level2.js" />
-     <Compile Include="Assets\GameScripts\Conditions_Level3.js" />
-     <Compile Include="Assets\GameScripts\Conditions_Level4.js" />
-     <Compile Include="Assets\GameScripts\Conditions_Level5.js" />
      <Compile Include="Assets\GameScripts\Detect_TileCollision.js" />
      <Compile Include="Assets\GameScripts\Open_Level0_JS.js" />
      <Compile Include="Assets\GameScripts\Open_Level1_JS.js" />

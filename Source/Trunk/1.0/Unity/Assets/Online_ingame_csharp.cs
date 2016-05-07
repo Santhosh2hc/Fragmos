@@ -9,7 +9,7 @@ public class Online_ingame_csharp : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
-
+		GooglePlayRTM.ActionDataRecieved += OnGCDataReceived;
 	}
 	
 	// Update is called once per frame

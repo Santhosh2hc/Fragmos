@@ -56,6 +56,8 @@ public static var isApplyPowerUp : boolean = false;
 public static var swapPower : int = 0;
 public static var isPause : boolean = false;
 public static var oppScore : int = 0;
+public static var isRePosition : boolean = false;
+public static var actLevel : int = 0;
 
 private var isNewTouch : boolean = false;
 private var isValidMagnit : boolean = false; //Valid Magnitude (Magnitude above required threshold)
@@ -80,6 +82,12 @@ function Start()
 {
 swapPower = PlayerPrefs.GetInt("swapPower");
 GameMode = PlayerPrefs.GetString("GameMode");
+var r : int;
+for (r = 0; r < 9; r++)
+{
+tileCol[r].size = refTilesize.size;	
+}
+
 }
 
 function Update ()  
@@ -163,7 +171,7 @@ function getSwipeCoordinates()
 
 function setSpeed()
 {
-	tileSpeed = 20; //20 is a magic number which can be changed to improve user experience
+	tileSpeed = 20; //15 is a magic number which can be changed to improve user experience
 }
 
 function moveTiles()
