@@ -7,7 +7,7 @@ public class Online_csharp2 : MonoBehaviour {
 	
 	float msg_Timer, msg_timer2 = 0;
 	
-	bool isDataReceived = false, isNewLevel = false, isDisplayResult = false;
+	bool isDataReceived = false, isDisplayResult = false;
 	int player_Score = 0, opp_Score = 0, handShake = 10001, sent = 0, received = 0, isWin = 0;
 	
 	public GUISkin infoSkin = null;
@@ -51,9 +51,7 @@ public class Online_csharp2 : MonoBehaviour {
 		
 		GUI.skin = infoSkin;
 		infoSkin.label.fontSize = xUnit/4;
-		
-		GUI.Label(new Rect (Screen.width / 2 - xUnit * 2/2, Screen.height - yUnit / 2, xUnit * 3, yUnit), "Start New Game");
-		
+				
 		if (isDisplayResult == false)
 		{
 			GUI.Label(new Rect(Screen.width/2 - xUnit * 4/2, yUnit * 2, xUnit * 4, yUnit), "Waiting for result...");
@@ -70,21 +68,16 @@ public class Online_csharp2 : MonoBehaviour {
 				GUI.Label(new Rect(Screen.width/2 - xUnit * 4/2, yUnit * 2, xUnit * 4, yUnit), "You   " + player_Score + "        Opponent   " + opp_Score);
 				if (isWin == 1)
 				{
-					GUI.Label(new Rect(Screen.width/2 - xUnit * 4/2, yUnit * 2.5f, xUnit * 4, yUnit), "You Won!");
+					GUI.Label(new Rect(Screen.width/2 - xUnit * 4/2, yUnit * 3f, xUnit * 4, yUnit), "You Won!");
 				}
 				else if (isWin == 2)
 				{
-					GUI.Label(new Rect(Screen.width/2 - xUnit * 4/2, yUnit * 2.5f, xUnit * 4, yUnit), "Draw!!");
+					GUI.Label(new Rect(Screen.width/2 - xUnit * 4/2, yUnit * 3f, xUnit * 4, yUnit), "Draw!!");
 				}
 				else
 				{
-					GUI.Label(new Rect(Screen.width/2 - xUnit * 4/2, yUnit * 2.5f, xUnit * 4, yUnit), "They Won!");
-				}
-				if (GUI.Button(new Rect (Screen.width / 2 - xUnit / 2, Screen.height - yUnit / 2, xUnit * 2, yUnit), ""))
-				{
-					isNewLevel = true;
-				}
-				
+					GUI.Label(new Rect(Screen.width/2 - xUnit * 4/2, yUnit * 3f, xUnit * 4, yUnit), "They Won!");
+				}				
 			}
 		}
 	}

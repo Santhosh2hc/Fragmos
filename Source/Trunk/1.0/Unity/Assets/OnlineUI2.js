@@ -1,5 +1,7 @@
 ﻿#pragma strict
 
+var titleSkin : GUISkin;
+var greylineSkin : GUISkin;
 var turqButtonSkin : GUISkin;
 var purpleButtonSkin : GUISkin;
 
@@ -11,7 +13,8 @@ function Start () {
 
 }
 
-function Update () {
+function Update () 
+{
 
 }
 
@@ -21,24 +24,46 @@ xUnit = Screen.width/5;
 yUnit = Screen.height/10;
 xyUnit = (xUnit + yUnit)/2;
 
+GUI.skin = greylineSkin;
+GUI.Label(new Rect(xUnit/2, yUnit, xUnit * 4, 2), "");
+GUI.Label(new Rect(xUnit/2, yUnit * 9, xUnit * 4, 2), "");
+
+GUI.skin = titleSkin;
+titleSkin.label.fontSize = xUnit/2;
+GUI.Label(new Rect(Screen.width/2 - xUnit * 3/2, yUnit/3.8, xUnit * 3, xUnit/2), "SCORE");
+
 GUI.skin = turqButtonSkin;
 turqButtonSkin.label.fontSize = xUnit/4;
 if (GUI.Button(new Rect(Screen.width - 3.5f * xUnit, Screen.height/2, 2 * xUnit, 0.6f * xyUnit), ""))
 {
-	Conditions_Level1.isRePosition = true;
+	audio.Play();
 	TileMovement_Swipe.timeRemaining = 60;
 	TileMovement_Swipe.moves = 60;
 	TileMovement_Swipe.score = 0;
 	TileMovement_Swipe.level = 1;
 	TileMovement_Swipe.isPause = false;
-	Application.LoadLevel("Online");
+	TileMovement_Swipe.actLevel = 0;
+	LoadLevel();
 }
 GUI.Label(new Rect(Screen.width - 3.5f * xUnit, Screen.height/2, 2 * xUnit, 0.6f * xyUnit), "Play Again");
 GUI.skin = purpleButtonSkin;
 purpleButtonSkin.label.fontSize = xUnit/4;
 if (GUI.Button(new Rect(Screen.width - 3.5f * xUnit, Screen.height/2 + 0.75f * xyUnit, 2 * xUnit, 0.6f * xyUnit), ""))
 {
-	Application.LoadLevel("MainMenu");
+	audio.Play();
+	LoadMenu();
 }
 GUI.Label(new Rect(Screen.width - 3.5f * xUnit, Screen.height/2 + 0.75f * xyUnit, 2 * xUnit, 0.6f* xyUnit), "Exit to Menu");
+}
+
+function LoadMenu()
+{
+yield WaitForSeconds(2);
+Application.LoadLevel("MainMenu");
+}
+
+function LoadLevel()
+{
+yield WaitForSeconds(2);
+Application.LoadLevel("Online");
 }

@@ -11,6 +11,8 @@ public class Online_csharp : MonoBehaviour {
 
 	private bool isPlayerConnected = false;
 	private bool isPlayerDisconnected = false;
+
+	private float findmatchTimer = 0;
 		
 	void Start () 
 	{   
@@ -82,6 +84,7 @@ public class Online_csharp : MonoBehaviour {
 		purpleButtonSkin.label.fontSize = xUnit/4;
 		if (GUI.Button(new Rect(Screen.width - 3.5f * xUnit, Screen.height/2f + 0.75f * xyUnit, 2 * xUnit, 0.6f * xyUnit), ""))
 		{
+			audio.Play();
 			Application.LoadLevel("MainMenu");
 		}
 		GUI.Label(new Rect(Screen.width - 3.5f * xUnit, Screen.height/2f + 0.75f * xyUnit, 2 * xUnit, 0.6f* xyUnit), "Exit to Menu");
@@ -90,10 +93,15 @@ public class Online_csharp : MonoBehaviour {
 	
 	void Update()
 	{
-
+		findmatchTimer = findmatchTimer + Time.deltaTime;
 		if (isPlayerConnected == true) 
 		{	
 			isPlayerDisconnected = false;
+			if(findmatchTimer > 20)
+			{
+				findMatch();
+				findmatchTimer = 0;
+			}
 		}
 		if(GooglePlayRTM.instance.currentRoom.status == GP_RTM_RoomStatus.ROOM_STATUS_ACTIVE) 
 		{

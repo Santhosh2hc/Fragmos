@@ -1,17 +1,17 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Online_csharp2.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\GameScripts\Conditions_Level1.js">
     <Files>
-      <File FileName="Assets\Online_csharp.cs" Line="83" Column="41" />
+      <File FileName="Assets\GameScripts\TileMovement_Swipe.js" Line="439" Column="57" />
+      <File FileName="Assets\GameScripts\Conditions_Level1.js" Line="450" Column="46" />
+      <File FileName="Assets\Online_csharp.cs" Line="20" Column="32" />
       <File FileName="E:\Android\Project1\Unity\Assets\GameScripts\Open_Level1_JS.js" Line="1" Column="1" />
-      <File FileName="E:\Android\Project1\Unity\Assets\GameScripts\RTM_2.cs" Line="121" Column="39" />
-      <File FileName="Assets\MenuUI.js" Line="36" Column="2" />
-      <File FileName="Assets\GameScripts\Conditions_Level1.js" Line="105" Column="22" />
-      <File FileName="Assets\OnlineUI.js" Line="6" Column="36" />
-      <File FileName="Assets\Online_csharp2.cs" Line="103" Column="1" />
-      <File FileName="Assets\GameScripts\TileMovement_Swipe.js" Line="86" Column="2" />
-      <File FileName="Assets\Online_ingame_csharp.cs" Line="21" Column="50" />
-      <File FileName="Assets\ScoreUI.js" Line="22" Column="1" />
+      <File FileName="E:\Android\Project1\Unity\Assets\GameScripts\RTM_2.cs" Line="1" Column="1" />
+      <File FileName="Assets\MenuUI.js" Line="42" Column="23" />
+      <File FileName="Assets\OnlineUI.js" Line="1" Column="1" />
+      <File FileName="Assets\Online_csharp2.cs" Line="1" Column="1" />
+      <File FileName="Assets\Online_ingame_csharp.cs" Line="1" Column="1" />
+      <File FileName="Assets\ScoreUI.js" Line="1" Column="1" />
       <File FileName="Assets\OnlineUI2.js" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>

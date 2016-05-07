@@ -2,7 +2,7 @@
 
 var titleSkin : GUISkin;
 var greylineSkin : GUISkin;
-var demoSkin : GUISkin;
+var infoSkin : GUISkin;
 var turqButtonSkin : GUISkin;
 var purpleButtonSkin : GUISkin;
 
@@ -13,7 +13,7 @@ private var tempScore : int;
 
 function Start () 
 {
-tempScore = TileMovement_Swipe.score * 10;
+tempScore = TileMovement_Swipe.score;
 }
 
 function Update () {
@@ -35,14 +35,15 @@ GUI.skin = titleSkin;
 titleSkin.label.fontSize = xUnit/2;
 GUI.Label(new Rect(Screen.width/2 - xUnit * 3/2, yUnit/3.8, xUnit * 3, xUnit/2), "SCORE");
 
-GUI.skin = demoSkin;
-demoSkin.label.fontSize = xUnit/4;
-GUI.Label(new Rect(Screen.width/2 - xUnit/2, yUnit * 2, xUnit * 3, yUnit), "  Score  "+tempScore);
+GUI.skin = infoSkin;
+infoSkin.label.fontSize = xUnit/4;
+GUI.Label(new Rect(Screen.width/2 - xUnit * 3/2, yUnit * 2, xUnit * 3, yUnit), "Score  "+tempScore);
 
 GUI.skin = turqButtonSkin;
 turqButtonSkin.label.fontSize = xUnit/4;
 if (GUI.Button(new Rect(Screen.width - 3.5 * xUnit, Screen.height/2, 2 * xUnit, 0.6 * xyUnit), ""))
 {
+audio.Play();
 TileMovement_Swipe.timeRemaining = 60;
 TileMovement_Swipe.moves = 60;
 TileMovement_Swipe.score = 0;
@@ -55,6 +56,7 @@ GUI.skin = purpleButtonSkin;
 purpleButtonSkin.label.fontSize = xUnit/4;
 if (GUI.Button(new Rect(Screen.width - 3.5 * xUnit, Screen.height/2 + 0.75 * xyUnit, 2 * xUnit, 0.6 * xyUnit), ""))
 {
+audio.Play();
 Application.LoadLevel("MainMenu");
 }
 GUI.Label(new Rect(Screen.width - 3.5 * xUnit, Screen.height/2 + 0.75 * xyUnit, 2 * xUnit, 0.6* xyUnit), "Menu");
