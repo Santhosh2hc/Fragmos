@@ -225,11 +225,7 @@ audio.Play();
 TileMovement_Swipe.isRePosition = true;
 TileMovement_Swipe.timeRemaining = 60;
 TileMovement_Swipe.moves = 60;
-TileMovement_Swipe.score = 0;
-TileMovement_Swipe.level = 1;
 TileMovement_Swipe.isPause = false;
-TileMovement_Swipe.actLevel = 0;
-Application.LoadLevel("Level1");
 }
 GUI.Label(new Rect(Screen.width - 3.5 * xUnit, Screen.height/2, 2 * xUnit, 0.6 * xyUnit), "Restart");
 GUI.skin = purpleButtonSkin;
@@ -302,7 +298,7 @@ function checkWinCondition()
 	//
 	//---------------------------------------------------------------------------------------------------------------------------------//
 	var matchCount : int = 0; //Number of matching tiles
-	var WIN_NUMBER = 0;
+	var WIN_NUMBER = 100;
 	
 	//---------------------------------------------------------------------------------------------------------------------------------
 	//Level1 & 2	   
@@ -393,11 +389,11 @@ function checkWinCondition()
 	{
 	matchCount++;		
 	}			
-	if (((tilePos[6].transform.position - POS[6]).magnitude < LOC_TOLERANCE)||((tilePos[7].transform.position - POS[6]).magnitude < LOC_TOLERANCE))
+	if (((tilePos[7].transform.position - POS[6]).magnitude < LOC_TOLERANCE)||((tilePos[8].transform.position - POS[6]).magnitude < LOC_TOLERANCE))
 	{
 	matchCount++;		
 	}
-	if (((tilePos[6].transform.position - POS[7]).magnitude < LOC_TOLERANCE)||((tilePos[7].transform.position - POS[7]).magnitude < LOC_TOLERANCE))
+	if (((tilePos[7].transform.position - POS[7]).magnitude < LOC_TOLERANCE)||((tilePos[8].transform.position - POS[7]).magnitude < LOC_TOLERANCE))
 	{
 	matchCount++;		
 	}
