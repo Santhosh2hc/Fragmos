@@ -82,12 +82,6 @@ function Start()
 {
 swapPower = PlayerPrefs.GetInt("swapPower");
 GameMode = PlayerPrefs.GetString("GameMode");
-var r : int;
-for (r = 0; r < 9; r++)
-{
-tileCol[r].size = refTilesize.size;	
-}
-
 }
 
 function Update ()  

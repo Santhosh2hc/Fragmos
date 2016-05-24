@@ -39,7 +39,7 @@ TileMovement_Swipe.moves = 60;
 TileMovement_Swipe.score = 0;
 TileMovement_Swipe.level = 1;
 TileMovement_Swipe.isPause = false;
-TileMovement_Swipe.actLevel = 0;
+TileMovement_Swipe.actLevel = 1;
 }
 
 function Update () {
